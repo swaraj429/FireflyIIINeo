@@ -14,8 +14,6 @@ workspace:
   - packages/core
   - packages/sms_engine
   - packages/parser_engine
-  - packages/sync_engine
-  - packages/analytics
   - packages/firefly_adapter
 
 dev_dependencies:
