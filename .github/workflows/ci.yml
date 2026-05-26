@@ -19,7 +19,7 @@ jobs:
           cache-dependency-path: backend/neo_backend/go.sum
       - name: Install dependencies
         working-directory: backend/neo_backend
-        run: go mod download
+        run: go mod tidy
       - name: Run Tests
         working-directory: backend/neo_backend
         run: go test -v ./...
@@ -33,7 +33,7 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-          flutter-version: '3.22.x'
+          flutter-version: '3.27.x'
       - name: Install Melos
         run: |
           dart pub global activate melos
@@ -58,7 +58,7 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-          flutter-version: '3.22.x'
+          flutter-version: '3.27.x'
       - run: |
           dart pub global activate melos
           dart pub get
