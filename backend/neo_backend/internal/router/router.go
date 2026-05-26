@@ -32,13 +32,14 @@ func New(db *gorm.DB) http.Handler {
 	}))
 
 	// ── Handler instances ─────────────────────────────────────────────────────
-	authH := &handlers.AuthHandler{DB: db}
-	accountsH := &handlers.AccountsHandler{DB: db}
-	txH := &handlers.TransactionsHandler{DB: db}
-	catH := &handlers.CategoriesHandler{DB: db}
-	budH := &handlers.BudgetsHandler{DB: db}
-	tagBillH := &handlers.TagsBillsHandler{DB: db}
-	rulesH := &handlers.RulesHandler{DB: db}
+	authH := handlers.NewAuthHandler(db)
+	accountsH := handlers.NewAccountsHandler(db)
+	txH := handlers.NewTransactionsHandler(db)
+	catH := handlers.NewCategoriesHandler(db)
+	budH := handlers.NewBudgetsHandler(db)
+	tagsH := handlers.NewTagsHandler(db)
+	billsH := handlers.NewBillsHandler(db)
+	rulesH := handlers.NewRulesHandler(db)
 	smsH := &handlers.SMSHandler{DB: db}
 	analyticsH := &handlers.AnalyticsHandler{DB: db}
 
@@ -61,68 +62,68 @@ func New(db *gorm.DB) http.Handler {
 			r.Use(middleware.AuthRequired)
 
 			// Auth / profile
-			r.Get("/auth/me", authH.GetMe)
+			r.Get("/auth/me", authH.Me)
 			r.Put("/auth/me", authH.UpdateMe)
 			r.Post("/auth/change-password", authH.ChangePassword)
 
 			// Accounts
-			r.Get("/accounts", accountsH.ListAccounts)
-			r.Post("/accounts", accountsH.CreateAccount)
-			r.Get("/accounts/{id}", accountsH.GetAccount)
-			r.Put("/accounts/{id}", accountsH.UpdateAccount)
-			r.Delete("/accounts/{id}", accountsH.DeleteAccount)
-			r.Get("/accounts/{id}/transactions", accountsH.GetAccountTransactions)
-			r.Get("/accounts/{id}/summary", accountsH.GetAccountSummary)
+			r.Get("/accounts", accountsH.List)
+			r.Post("/accounts", accountsH.Create)
+			r.Get("/accounts/{id}", accountsH.Get)
+			r.Put("/accounts/{id}", accountsH.Update)
+			r.Delete("/accounts/{id}", accountsH.Delete)
+			r.Get("/accounts/{id}/transactions", accountsH.GetTransactions)
+			r.Get("/accounts/{id}/summary", accountsH.GetSummary)
 
 			// Transactions
-			r.Get("/transactions", txH.ListTransactions)
-			r.Post("/transactions", txH.CreateTransaction)
-			r.Get("/transactions/search", txH.SearchTransactions)
-			r.Get("/transactions/{id}", txH.GetTransaction)
-			r.Put("/transactions/{id}", txH.UpdateTransaction)
-			r.Delete("/transactions/{id}", txH.DeleteTransaction)
+			r.Get("/transactions", txH.List)
+			r.Post("/transactions", txH.Create)
+			r.Get("/transactions/search", txH.Search)
+			r.Get("/transactions/{id}", txH.Get)
+			r.Put("/transactions/{id}", txH.Update)
+			r.Delete("/transactions/{id}", txH.Delete)
 			r.Post("/transactions/bulk-delete", txH.BulkDelete)
 			r.Post("/transactions/bulk-categorize", txH.BulkCategorize)
 
 			// Categories
-			r.Get("/categories", catH.ListCategories)
-			r.Post("/categories", catH.CreateCategory)
+			r.Get("/categories", catH.List)
+			r.Post("/categories", catH.Create)
 			r.Get("/categories/summary", catH.GetSummary)
-			r.Get("/categories/{id}", catH.GetCategory)
-			r.Put("/categories/{id}", catH.UpdateCategory)
-			r.Delete("/categories/{id}", catH.DeleteCategory)
-			r.Get("/categories/{id}/transactions", catH.GetCategoryTransactions)
+			r.Get("/categories/{id}", catH.Get)
+			r.Put("/categories/{id}", catH.Update)
+			r.Delete("/categories/{id}", catH.Delete)
+			r.Get("/categories/{id}/transactions", catH.GetTransactions)
 
 			// Budgets
-			r.Get("/budgets", budH.ListBudgets)
-			r.Post("/budgets", budH.CreateBudget)
+			r.Get("/budgets", budH.List)
+			r.Post("/budgets", budH.Create)
 			r.Get("/budgets/summary", budH.GetSummary)
-			r.Get("/budgets/{id}", budH.GetBudget)
-			r.Put("/budgets/{id}", budH.UpdateBudget)
-			r.Delete("/budgets/{id}", budH.DeleteBudget)
+			r.Get("/budgets/{id}", budH.Get)
+			r.Put("/budgets/{id}", budH.Update)
+			r.Delete("/budgets/{id}", budH.Delete)
 			r.Get("/budgets/{id}/usage", budH.GetUsage)
 
 			// Tags
-			r.Get("/tags", tagBillH.ListTags)
-			r.Post("/tags", tagBillH.CreateTag)
-			r.Put("/tags/{id}", tagBillH.UpdateTag)
-			r.Delete("/tags/{id}", tagBillH.DeleteTag)
+			r.Get("/tags", tagsH.List)
+			r.Post("/tags", tagsH.Create)
+			r.Put("/tags/{id}", tagsH.Update)
+			r.Delete("/tags/{id}", tagsH.Delete)
 
 			// Bills
-			r.Get("/bills", tagBillH.ListBills)
-			r.Post("/bills", tagBillH.CreateBill)
-			r.Get("/bills/upcoming", tagBillH.GetUpcomingBills)
-			r.Get("/bills/{id}", tagBillH.GetBill)
-			r.Put("/bills/{id}", tagBillH.UpdateBill)
-			r.Delete("/bills/{id}", tagBillH.DeleteBill)
+			r.Get("/bills", billsH.List)
+			r.Post("/bills", billsH.Create)
+			r.Get("/bills/upcoming", billsH.GetUpcoming)
+			r.Get("/bills/{id}", billsH.Get)
+			r.Put("/bills/{id}", billsH.Update)
+			r.Delete("/bills/{id}", billsH.Delete)
 
 			// Rules
-			r.Get("/rules", rulesH.ListRules)
-			r.Post("/rules", rulesH.CreateRule)
-			r.Get("/rules/{id}", rulesH.GetRule)
-			r.Put("/rules/{id}", rulesH.UpdateRule)
-			r.Delete("/rules/{id}", rulesH.DeleteRule)
-			r.Post("/rules/{id}/test", rulesH.TestRule)
+			r.Get("/rules", rulesH.List)
+			r.Post("/rules", rulesH.Create)
+			r.Get("/rules/{id}", rulesH.Get)
+			r.Put("/rules/{id}", rulesH.Update)
+			r.Delete("/rules/{id}", rulesH.Delete)
+			r.Post("/rules/{id}/test", rulesH.Test)
 			r.Post("/rules/apply-all", rulesH.ApplyAll)
 
 			// SMS

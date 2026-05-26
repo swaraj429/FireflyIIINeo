@@ -3,6 +3,7 @@ package database
 import (
 	"fmt"
 	"log"
+	"time"
 
 	"github.com/fireflyneo/neo-backend/internal/models"
 	"gorm.io/driver/sqlite"
@@ -27,9 +28,8 @@ func OpenDB(dbPath string) (*gorm.DB, error) {
 		DSN:        dsn,
 	}, &gorm.Config{
 		Logger: logger.Default.LogMode(logger.Warn),
-		NowFunc: func() interface{} {
-			// Return consistent UTC time
-			return nil
+		NowFunc: func() time.Time {
+			return time.Now().UTC()
 		},
 	})
 	if err != nil {

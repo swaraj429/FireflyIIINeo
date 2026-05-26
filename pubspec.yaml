@@ -3,18 +3,8 @@ description: FireflyIII Neo - Personal Finance App Workspace
 publish_to: none
 
 environment:
-  sdk: ">=3.7.0 <4.0.0"
-  flutter: ">=3.27.0"
-
-workspace:
-  - apps/mobile
-  - packages/shared
-  - packages/ui
-  - packages/database
-  - packages/core
-  - packages/sms_engine
-  - packages/parser_engine
-  - packages/firefly_adapter
+  sdk: ">=3.4.0 <4.0.0"
+  flutter: ">=3.22.0"
 
 dev_dependencies:
   melos: ^6.0.0

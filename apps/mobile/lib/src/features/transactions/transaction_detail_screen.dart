@@ -3,7 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
-import '../../providers/transactions_provider.dart';
+import 'package:neo_shared/neo_shared.dart';
+import '../../providers/local_providers.dart';
 import '../../widgets/glass_card.dart';
 
 class TransactionDetailScreen extends ConsumerWidget {
@@ -41,11 +42,11 @@ class _TransactionDetailContent extends StatelessWidget {
 
   Color get _typeColor {
     switch (transaction.type) {
-      case 'income':
+      case TransactionType.deposit:
         return const Color(0xFF4CAF50);
-      case 'expense':
+      case TransactionType.withdrawal:
         return const Color(0xFFEF5350);
-      case 'transfer':
+      case TransactionType.transfer:
         return const Color(0xFF2196F3);
       default:
         return Colors.white;
@@ -117,7 +118,7 @@ class _TransactionDetailContent extends StatelessWidget {
                     child: Material(
                       color: Colors.transparent,
                       child: Text(
-                        '${transaction.type == 'income' ? '+' : '-'}₹${NumberFormat('#,##,###.##').format(transaction.amount)}',
+                        '${transaction.type == TransactionType.deposit ? '+' : '-'}₹${NumberFormat('#,##,###.##').format(transaction.amount)}',
                         style: TextStyle(
                           fontSize: 40,
                           fontWeight: FontWeight.w800,
@@ -158,21 +159,19 @@ class _TransactionDetailContent extends StatelessWidget {
                     _DetailRow(
                       icon: Icons.calendar_today_rounded,
                       label: 'Date',
-                      value: DateFormat('EEEE, d MMMM yyyy').format(
-                          DateTime.parse(transaction.date)),
+                      value: DateFormat('EEEE, d MMMM yyyy').format(transaction.date),
                     ),
                     _Divider(),
                     _DetailRow(
                       icon: Icons.access_time_rounded,
                       label: 'Time',
-                      value: DateFormat('h:mm a')
-                          .format(DateTime.parse(transaction.date)),
+                      value: DateFormat('h:mm a').format(transaction.date),
                     ),
                     _Divider(),
                     _DetailRow(
                       icon: Icons.credit_card_rounded,
                       label: 'Account',
-                      value: transaction.accountName,
+                      value: transaction.accountName ?? 'No Account',
                     ),
                     if (transaction.toAccount != null) ...[
                       _Divider(),

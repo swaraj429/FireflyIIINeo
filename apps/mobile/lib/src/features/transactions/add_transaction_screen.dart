@@ -4,8 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
-import '../../providers/transactions_provider.dart';
-import '../../providers/accounts_provider.dart';
+import '../../providers/local_providers.dart';
 import '../../widgets/glass_card.dart';
 
 class AddTransactionScreen extends ConsumerStatefulWidget {

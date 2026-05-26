@@ -15,6 +15,7 @@ abstract class AppColors {
   static const Color accentVariant = Color(0xFFFF9999);
 
   // ─── Semantic ─────────────────────────────────────────────────────────────
+  static const Color background = darkBackground;
   static const Color income = Color(0xFF00D4AA);
   static const Color incomeLight = Color(0xFF1AFFD5);
   static const Color expense = Color(0xFFFF6B6B);

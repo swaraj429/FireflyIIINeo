@@ -33,7 +33,7 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-          flutter-version: '3.27.x'
+          flutter-version: '3.22.x'
       - name: Install Melos
         run: |
           dart pub global activate melos
@@ -58,7 +58,7 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-          flutter-version: '3.27.x'
+          flutter-version: '3.22.x'
       - run: |
           dart pub global activate melos
           dart pub get

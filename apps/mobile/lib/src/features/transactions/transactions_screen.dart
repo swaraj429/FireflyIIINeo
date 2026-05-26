@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:neo_core/neo_core.dart';
 import 'package:neo_ui/neo_ui.dart';
 
@@ -92,7 +93,8 @@ class _TransactionsScreenState extends ConsumerState<TransactionsScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
             child: NeoTextField(
               controller: _searchController,
-              hintText: 'Search transactions...',
+              label: 'Search',
+              hint: 'Search transactions...',
               prefixIcon: Icons.search_rounded,
               onChanged: _onSearch,
             ),
@@ -116,11 +118,10 @@ class _TransactionsScreenState extends ConsumerState<TransactionsScreen> {
                     itemBuilder: (context, index) {
                       final tx = state.items[index];
                       return TransactionTile(
-                        title: tx.description,
-                        subtitle: tx.merchantName ?? 'No Category', 
-                        amount: tx.amount,
-                        date: tx.date,
-                        type: tx.type,
+                        transaction: tx,
+                        onTap: () {
+                          context.push('/transactions/${tx.id}');
+                        },
                       );
                     },
                   ),

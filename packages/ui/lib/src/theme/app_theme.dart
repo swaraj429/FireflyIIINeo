@@ -66,7 +66,7 @@ abstract class AppTheme {
           systemNavigationBarIconBrightness: Brightness.light,
         ),
       ),
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         color: AppColors.darkCard,
         elevation: 0,
         shape: RoundedRectangleBorder(
@@ -232,7 +232,7 @@ abstract class AppTheme {
         ),
         clipBehavior: Clip.antiAlias,
       ),
-      dialogTheme: DialogTheme(
+      dialogTheme: DialogThemeData(
         backgroundColor: AppColors.darkCard,
         elevation: 0,
         shape: RoundedRectangleBorder(
@@ -267,7 +267,7 @@ abstract class AppTheme {
         elevation: 4,
         shape: CircleBorder(),
       ),
-      tabBarTheme: TabBarTheme(
+      tabBarTheme: TabBarThemeData(
         labelColor: AppColors.primary,
         unselectedLabelColor: AppColors.darkTextSecondary,
         indicatorColor: AppColors.primary,
@@ -335,7 +335,7 @@ abstract class AppTheme {
           systemNavigationBarIconBrightness: Brightness.dark,
         ),
       ),
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         color: AppColors.lightCard,
         elevation: 0,
         shape: RoundedRectangleBorder(

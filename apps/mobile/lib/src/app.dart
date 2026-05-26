@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:neo_core/neo_core.dart';
 import 'router/app_router.dart';
-import 'providers/settings_provider.dart';
 
 class FireflyNeoApp extends ConsumerWidget {
   const FireflyNeoApp({super.key});
@@ -10,7 +10,12 @@ class FireflyNeoApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(appRouterProvider);
-    final themeMode = ref.watch(themeModeProvider);
+    final themeStr = ref.watch(themeModeProvider);
+    final themeMode = themeStr == 'dark'
+        ? ThemeMode.dark
+        : themeStr == 'light'
+            ? ThemeMode.light
+            : ThemeMode.system;
 
     return MaterialApp.router(
       title: 'FireflyIII Neo',
@@ -51,7 +56,7 @@ class FireflyNeoApp extends ConsumerWidget {
         displayColor: Colors.white,
       ),
       scaffoldBackgroundColor: const Color(0xFF0D0D12),
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         color: const Color(0xFF1A1A2E),
         elevation: 0,
         shape: RoundedRectangleBorder(

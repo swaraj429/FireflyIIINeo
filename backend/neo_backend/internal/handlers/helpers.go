@@ -19,6 +19,21 @@ func writeError(w http.ResponseWriter, status int, message string) {
 	writeJSON(w, status, map[string]string{"error": message})
 }
 
+// JSON is a wrapper around writeJSON.
+func JSON(w http.ResponseWriter, status int, data interface{}) {
+	writeJSON(w, status, data)
+}
+
+// Error is a wrapper around writeError.
+func Error(w http.ResponseWriter, status int, message string) {
+	writeError(w, status, message)
+}
+
+// DecodeJSON decodes request JSON body into a target struct.
+func DecodeJSON(r *http.Request, target interface{}) error {
+	return json.NewDecoder(r.Body).Decode(target)
+}
+
 // paginationParams extracts page/limit from query params.
 type paginationParams struct {
 	Page  int

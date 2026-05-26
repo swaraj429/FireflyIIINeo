@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:neo_core/neo_core.dart';
 import 'package:neo_ui/neo_ui.dart';
 
@@ -196,11 +197,10 @@ class DashboardScreen extends ConsumerWidget {
                       // Note: We need a categoryName fallback if not in model directly
                       // This assumes the model has or we use description.
                       return TransactionTile(
-                        title: tx.description,
-                        subtitle: tx.merchantName ?? 'No Category', 
-                        amount: tx.amount,
-                        date: tx.date,
-                        type: tx.type, // Note: tx.type is a String in the Go backend
+                        transaction: tx,
+                        onTap: () {
+                          context.push('/transactions/${tx.id}');
+                        },
                       );
                     },
                     childCount: state.items.length > 5 ? 5 : state.items.length,
