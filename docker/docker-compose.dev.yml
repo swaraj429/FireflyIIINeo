@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  neo_backend:
+    build:
+      context: ../backend/neo_backend
+      dockerfile: ../../docker/Dockerfile.backend.dev
+    container_name: firefly_neo_backend
+    ports:
+      - "9090:9090"
+    volumes:
+      - ../backend/neo_backend:/app
+      - neo_data:/root/.fireflyneo
+    environment:
+      - PORT=9090
+      - DB_PATH=/root/.fireflyneo/neo.db
+      - JWT_SECRET=dev-secret-do-not-use-in-production
+    restart: unless-stopped
+
+volumes:
+  neo_data:

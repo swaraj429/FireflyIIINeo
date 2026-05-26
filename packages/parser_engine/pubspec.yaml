@@ -1,0 +1,20 @@
+name: neo_parser_engine
+description: SMS transaction parser engine for Indian banks – FireflyIII Neo
+version: 1.0.0
+homepage: https://github.com/fireflyneo/neo
+
+environment:
+  sdk: ">=3.4.0 <4.0.0"
+  flutter: ">=3.22.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  neo_shared:
+    path: ../shared
+  crypto: ^3.0.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0

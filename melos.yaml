@@ -1,0 +1,68 @@
+name: firefly_neo
+packages:
+  - apps/*
+  - packages/*
+
+sdkPath: .fvm/flutter_sdk
+
+command:
+  bootstrap:
+    usePubspecOverrides: true
+    environment:
+      sdk: ">=3.4.0 <4.0.0"
+      flutter: ">=3.22.0"
+
+scripts:
+  test:
+    run: melos exec -- flutter test
+    description: Run all tests across all packages
+
+  analyze:
+    run: melos exec -- flutter analyze --fatal-infos
+    description: Analyze all packages
+
+  format:
+    run: melos exec -- dart format . --set-exit-if-changed
+    description: Format all Dart code
+
+  build_runner:
+    run: melos exec --depends-on="build_runner" -- dart run build_runner build --delete-conflicting-outputs
+    description: Run build_runner in all packages that depend on it
+
+  gen:
+    run: melos run build_runner
+    description: Generate all code (models, riverpod, drift, etc.)
+
+  clean:
+    run: melos exec -- flutter clean
+    description: Clean all packages
+
+  get:
+    run: melos exec -- flutter pub get
+    description: Get dependencies in all packages
+
+  test:coverage:
+    run: melos exec -- flutter test --coverage
+    description: Run tests with coverage
+
+  l10n:
+    run: melos exec --depends-on="flutter_localizations" -- flutter gen-l10n
+    description: Generate localizations
+
+  check:
+    run: |
+      melos run analyze
+      melos run test
+    description: Full quality check (analyze + test)
+
+  backend:build:
+    run: cd backend/neo_backend && go build -o bin/neo_backend .
+    description: Build the Go backend
+
+  backend:test:
+    run: cd backend/neo_backend && go test ./...
+    description: Test the Go backend
+
+  backend:run:
+    run: cd backend/neo_backend && go run main.go
+    description: Run the Go backend locally

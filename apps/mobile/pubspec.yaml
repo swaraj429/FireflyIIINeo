@@ -1,0 +1,66 @@
+name: firefly_neo
+description: A premium local-first personal finance app
+publish_to: none
+version: 1.0.0+1
+environment:
+  sdk: '>=3.4.0 <4.0.0'
+  flutter: '>=3.22.0'
+dependencies:
+  flutter:
+    sdk: flutter
+  # Local packages
+  neo_shared:
+    path: ../../packages/shared
+  neo_ui:
+    path: ../../packages/ui
+  neo_database:
+    path: ../../packages/database
+  neo_core:
+    path: ../../packages/core
+  neo_sms_engine:
+    path: ../../packages/sms_engine
+  neo_parser_engine:
+    path: ../../packages/parser_engine
+  neo_firefly_adapter:
+    path: ../../packages/firefly_adapter
+  # State
+  flutter_riverpod: ^2.5.1
+  riverpod_annotation: ^2.3.5
+  hooks_riverpod: ^2.5.2
+  flutter_hooks: ^0.20.5
+  # Navigation
+  go_router: ^14.2.7
+  # UI
+  google_fonts: ^6.2.1
+  fl_chart: ^0.68.0
+  lottie: ^3.1.0
+  shimmer: ^3.0.0
+  gap: ^3.0.1
+  cached_network_image: ^3.3.1
+  flutter_svg: ^2.0.10
+  animations: ^2.0.11
+  smooth_page_indicator: ^1.1.0
+  # Functionality
+  flutter_local_notifications: ^17.2.2
+  local_auth: ^2.1.8
+  flutter_secure_storage: ^9.0.0
+  shared_preferences: ^2.2.3
+  image_picker: ^1.1.2
+  permission_handler: ^11.3.1
+  connectivity_plus: ^6.0.3
+  intl: ^0.19.0
+  uuid: ^4.4.0
+  path_provider: ^2.1.3
+  file_picker: ^8.0.7
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  riverpod_generator: ^2.4.0
+  build_runner: ^2.4.11
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/lottie/
+    - assets/images/
+    - assets/icons/

@@ -1,0 +1,19 @@
+name: firefly_neo_workspace
+description: FireflyIII Neo - Personal Finance App Workspace
+publish_to: none
+
+environment:
+  sdk: ">=3.4.0 <4.0.0"
+  flutter: ">=3.22.0"
+
+workspace:
+  - apps/mobile
+  - packages/shared
+  - packages/ui
+  - packages/database
+  - packages/core
+  - packages/sms_engine
+  - packages/parser_engine
+  - packages/sync_engine
+  - packages/analytics
+  - packages/firefly_adapter

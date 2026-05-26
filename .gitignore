@@ -1,0 +1,202 @@
+# =============================================================================
+# FireflyIII Neo - Comprehensive .gitignore
+# Flutter + Go + Docker + Android + iOS
+# =============================================================================
+
+# =============================================================================
+# FLUTTER / DART
+# =============================================================================
+# Dart tool cache
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# Flutter build output
+build/
+.build/
+
+# Pub cache
+.pub-cache/
+.pub/
+
+# IntelliJ / Android Studio
+*.iml
+*.ipr
+*.iws
+.idea/
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/shelf/
+
+# VS Code
+.vscode/settings.json
+.vscode/launch.json
+.vscode/extensions.json
+
+# Coverage
+coverage/
+lcov.info
+
+# Generated files (committed in this project)
+# *.g.dart
+# *.freezed.dart
+# *.gr.dart
+
+# Melos
+.melos_tool/
+melos_overrides.yaml
+pubspec_overrides.yaml
+
+# FVM
+.fvm/flutter_sdk/
+.fvm/fvm_config.json
+
+# =============================================================================
+# ANDROID
+# =============================================================================
+**/android/local.properties
+**/android/.gradle/
+**/android/captures/
+**/android/gradlew
+**/android/gradlew.bat
+**/android/gradle/wrapper/gradle-wrapper.jar
+**/android/gradle/wrapper/gradle-wrapper.properties
+**/android/key.properties
+*.jks
+*.keystore
+*.apk
+*.aab
+
+# Android Studio files
+**/android/.idea/
+**/android/*.iml
+
+# =============================================================================
+# iOS / MACOS
+# =============================================================================
+**/ios/Pods/
+**/ios/.symlinks/
+**/macos/Pods/
+**/ios/Runner.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings
+**/macos/Runner.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings
+*.xcworkspace/xcshareddata/
+
+# Xcode
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata/
+*.xccheckout
+*.xcscmblueprint
+DerivedData/
+*.moved-aside
+*.xcuserstate
+*.xcscmblueprint
+
+# =============================================================================
+# GO BACKEND
+# =============================================================================
+# Binaries
+backend/neo_backend/bin/
+backend/neo_backend/neo_backend
+backend/neo_backend/neo_backend.exe
+
+# Test output
+backend/neo_backend/*.test
+backend/neo_backend/coverage.out
+backend/neo_backend/coverage.html
+
+# Build cache
+backend/neo_backend/vendor/
+
+# Air (hot reload) temp files
+backend/neo_backend/tmp/
+
+# Database files (dev)
+backend/neo_backend/*.db
+backend/neo_backend/*.db-shm
+backend/neo_backend/*.db-wal
+*.db
+*.db-shm
+*.db-wal
+
+# =============================================================================
+# DOCKER
+# =============================================================================
+docker/.env
+docker/.env.*
+!docker/.env.example
+docker/data/
+
+# =============================================================================
+# ENVIRONMENT & SECRETS
+# =============================================================================
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.cert
+*.crt
+secrets/
+secret.yaml
+config.local.yaml
+
+# =============================================================================
+# OS SPECIFIC
+# =============================================================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# =============================================================================
+# EDITOR ARTIFACTS
+# =============================================================================
+*.swp
+*.swo
+*~
+.vim/
+*.sublime-project
+*.sublime-workspace
+.history/
+*.orig
+
+# =============================================================================
+# MISC
+# =============================================================================
+*.log
+*.tmp
+*.temp
+node_modules/
+.node_modules/
+dist/

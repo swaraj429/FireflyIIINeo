@@ -1,0 +1,20 @@
+name: neo_shared
+description: Shared models, constants, and utilities for FireflyIII Neo
+version: 1.0.0
+environment:
+  sdk: '>=3.4.0 <4.0.0'
+  flutter: '>=3.22.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  freezed_annotation: ^2.4.1
+  json_annotation: ^4.9.0
+  intl: ^0.19.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  freezed: ^2.5.2
+  json_serializable: ^6.8.0
+  build_runner: ^2.4.11

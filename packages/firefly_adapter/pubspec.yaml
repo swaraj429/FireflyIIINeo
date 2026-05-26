@@ -1,0 +1,22 @@
+name: neo_firefly_adapter
+description: HTTP API client for FireflyIII Neo backend
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: '>=3.4.0 <4.0.0'
+  flutter: '>=3.22.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  neo_shared:
+    path: ../shared
+  dio: ^5.4.3+1
+  flutter_secure_storage: ^9.0.0
+  connectivity_plus: ^6.0.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
