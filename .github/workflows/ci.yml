@@ -35,7 +35,9 @@ jobs:
           channel: 'stable'
           flutter-version: '3.22.x'
       - name: Install Melos
-        run: dart pub global activate melos
+        run: |
+          dart pub global activate melos
+          dart pub get
       - name: Melos Bootstrap
         run: melos bootstrap
       - name: Flutter Analyze
@@ -57,7 +59,9 @@ jobs:
         with:
           channel: 'stable'
           flutter-version: '3.22.x'
-      - run: dart pub global activate melos
+      - run: |
+          dart pub global activate melos
+          dart pub get
       - run: melos bootstrap
       - name: Build APK
         working-directory: apps/mobile
